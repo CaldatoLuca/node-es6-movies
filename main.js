@@ -87,7 +87,7 @@ class Movie {
   }
 
   toString() {
-    return `${this.title} (${this.year}) - ${this.genre} - ${this.rating} - ${this.type}`;
+    return `${this.title} è un film creato l' anno ${this.year} del genere ${this.genre} con votazione ${this.rating}`;
   }
 }
 
@@ -98,7 +98,7 @@ class TvSerie extends Movie {
     this.seasons = seasons;
   }
   toString() {
-    return `${this.title} (${this.year}) - ${this.genre} - ${this.rating} - ${this.type} - ${this.seasons} seasons`;
+    return `${this.title} è una serie tv dell' anno (${this.year}) del genere ${this.genre} con votazione ${this.rating} e ${this.seasons} stagioni`;
   }
 }
 
@@ -141,8 +141,8 @@ const averageVote = (arr, genre) => {
 
   return sumVote / mediaCount;
 };
-
-console.log(averageVote(movies, "fantasy"));
+console.log("Funzione Media Voti: " + averageVote(movies, "fantasy"));
+console.log("---------------------------");
 
 /**
  * Funzione che determina in base a un array la lista dei generi
@@ -163,5 +163,19 @@ const genreList = (arr) => {
     []
   );
 };
+console.log("Funzione Lista dei Generi: " + genreList(movies));
+console.log("---------------------------");
 
-console.log(genreList(movies));
+/**
+ * Funzione che determina in base a un genere restituisce la lista dei media con quel genere.toString()
+ * @param {string} genre
+ */
+const filterByGenre = (genre) => {
+  return movies
+    .filter((media) => {
+      return media.genre.toLowerCase() === genre.toLowerCase();
+    })
+    .map((media) => media.toString());
+};
+console.log("Funzione media per genere:");
+console.log(filterByGenre("drama"));

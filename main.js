@@ -123,3 +123,23 @@ const movies = media.map((element) => {
     );
   }
 });
+
+/**
+ * Funzione che determina in base a un array e a un genere la media voti
+ * @param {array} arr
+ * @param {string} genre
+ */
+const averageVote = (arr, genre) => {
+  let sumVote = 0;
+  let mediaCount = 0;
+  arr.forEach((item) => {
+    if (item.genre.toLowerCase() === genre.toLocaleLowerCase()) {
+      sumVote += item.rating;
+      mediaCount++;
+    }
+  });
+
+  return sumVote / mediaCount;
+};
+
+console.log(averageVote(movies, "fantasy"));

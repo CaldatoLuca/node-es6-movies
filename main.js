@@ -171,11 +171,19 @@ console.log("---------------------------");
  * @param {string} genre
  */
 const filterByGenre = (genre) => {
-  return movies
-    .filter((media) => {
-      return media.genre.toLowerCase() === genre.toLowerCase();
-    })
-    .map((media) => media.toString());
+  //   return movies
+  //     .filter((media) => {
+  //       return media.genre.toLowerCase() === genre.toLowerCase();
+  //     })
+  //     .map((media) => media.toString());
+
+  return movies.reduce(
+    (curr, media) =>
+      media.genre.toLocaleLowerCase() === genre.toLocaleLowerCase()
+        ? [...curr, media.toString()]
+        : curr,
+    []
+  );
 };
 console.log("Funzione media per genere:");
 console.log(filterByGenre("drama"));

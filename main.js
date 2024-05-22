@@ -143,3 +143,25 @@ const averageVote = (arr, genre) => {
 };
 
 console.log(averageVote(movies, "fantasy"));
+
+/**
+ * Funzione che determina in base a un array la lista dei generi
+ * @param {array} arr
+ */
+const genreList = (arr) => {
+  //   let genres = [];
+  //   arr.forEach((item) => {
+  //     if (!genres.includes(item.genre)) {
+  //       genres.push(item.genre);
+  //     }
+  //   });
+  //   return genres;
+
+  return arr.reduce(
+    (curr, media) =>
+      curr.includes(media.genre) ? curr : [...curr, media.genre],
+    []
+  );
+};
+
+console.log(genreList(movies));

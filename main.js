@@ -83,14 +83,13 @@ class Movie {
   #genre;
   #rating;
   #type;
-  #seasons;
 
   constructor(title, year, genre, rating, type) {
-    this.title = title;
-    this.year = year;
-    this.genre = genre;
-    this.rating = rating;
-    this.type = type;
+    this.#title = title;
+    this.#year = year;
+    this.#genre = genre;
+    this.#rating = rating;
+    this.#type = type;
   }
 
   get title() {
@@ -132,17 +131,25 @@ class Movie {
   set type(type) {
     this.#type = type;
   }
+
   toString() {
-    return `${this.title} è un film creato l' anno ${this.year} del genere ${this.genre} con votazione ${this.rating}`;
+    return `${this.#title} è un film creato l' anno ${this.#year} del genere ${
+      this.#genre
+    } con votazione ${this.#rating}`;
   }
 }
 
 //Classe SERIE TV
 class TvSerie extends Movie {
   #seasons;
+  #year;
+  #genre;
+  #rating;
+  #type;
+  #title;
   constructor(title, year, genre, rating, type, seasons) {
     super(title, year, genre, rating, type);
-    this.seasons = seasons;
+    this.#seasons = seasons;
   }
 
   get seasons() {
@@ -154,7 +161,9 @@ class TvSerie extends Movie {
   }
 
   toString() {
-    return `${this.title} è una serie tv dell' anno (${this.year}) del genere ${this.genre} con votazione ${this.rating} e ${this.seasons} stagioni`;
+    return `${this.title} è una serie tv dell' anno (${this.year}) del genere ${
+      this.genre
+    } con votazione ${this.rating} e ${this.#seasons} stagioni`;
   }
 }
 
@@ -197,7 +206,7 @@ const averageVote = (arr, genre) => {
 
   return sumVote / mediaCount;
 };
-console.log("Funzione Media Voti: " + averageVote(movies, "fantasy"));
+console.log("Funzione Media Voti: " + averageVote(movies, "crime"));
 console.log("---------------------------");
 
 /**
@@ -242,4 +251,4 @@ const filterByGenre = (genre) => {
   );
 };
 console.log("Funzione media per genere:");
-console.log(filterByGenre("drama"));
+console.log(filterByGenre("crime"));

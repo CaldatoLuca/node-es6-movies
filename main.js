@@ -84,12 +84,13 @@ class Movie {
   #rating;
   #type;
 
-  constructor(title, year, genre, rating, type) {
+  constructor(title, year, genre, rating, type, price) {
     this.#title = title;
     this.#year = year;
     this.#genre = genre;
     this.#rating = rating;
     this.#type = type;
+    this.price = 3.99;
   }
 
   get title() {
@@ -142,11 +143,7 @@ class Movie {
 //Classe SERIE TV
 class TvSerie extends Movie {
   #seasons;
-  #year;
-  #genre;
-  #rating;
-  #type;
-  #title;
+
   constructor(title, year, genre, rating, type, seasons) {
     super(title, year, genre, rating, type);
     this.#seasons = seasons;
@@ -164,6 +161,39 @@ class TvSerie extends Movie {
     return `${this.title} è una serie tv dell' anno (${this.year}) del genere ${
       this.genre
     } con votazione ${this.rating} e ${this.#seasons} stagioni`;
+  }
+}
+
+//Classe CARRELLO
+class Cart {
+  #items;
+  #total;
+
+  constructor() {
+    this.#items = [];
+    this.#total = 0;
+  }
+
+  get items() {
+    return this.#items;
+  }
+  addItem(item) {
+    this.#items.push(item.title);
+    this.#total += item.price;
+  }
+
+  removeItem(item) {
+    this.#items.splice(this.#items.indexOf(item), 1);
+    this.#total -= item.price;
+  }
+
+  clearCart() {
+    this.#items = [];
+    this.#total = 0;
+  }
+
+  get total() {
+    return this.#total + "$";
   }
 }
 
@@ -250,5 +280,40 @@ const filterByGenre = (genre) => {
     []
   );
 };
-console.log("Funzione media per genere:");
+console.log("Funzione filtro per genere:");
 console.log(filterByGenre("crime"));
+console.log("---------------------------");
+
+//Creazione dell' oggetto carrello
+const cart = new Cart();
+
+//Aggiunta degli items
+cart.addItem(movies[0]);
+cart.addItem(movies[4]);
+cart.addItem(movies[7]);
+cart.addItem(movies[9]);
+
+console.log("Items nel carrello: metodo addItem");
+console.log(cart.items);
+
+console.log("---");
+
+//Rimozione degli items
+cart.removeItem(movies[4]);
+cart.removeItem(movies[9]);
+
+console.log("Items nel carrello: dopo removeItem");
+console.log(cart.items);
+
+console.log("---");
+
+//Vista del prezzo
+console.log("Prezzo del carrello: " + cart.total);
+console.log("---");
+
+//Pulizia carrello
+cart.clearCart();
+
+console.log("Items nel carrello e prezzo: dopo clearCart");
+console.log(cart.items);
+console.log(cart.total);

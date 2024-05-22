@@ -78,6 +78,13 @@ const media = [
 
 //Classe MOVIE
 class Movie {
+  #title;
+  #year;
+  #genre;
+  #rating;
+  #type;
+  #seasons;
+
   constructor(title, year, genre, rating, type) {
     this.title = title;
     this.year = year;
@@ -86,6 +93,45 @@ class Movie {
     this.type = type;
   }
 
+  get title() {
+    return this.#title;
+  }
+
+  set title(title) {
+    this.#title = title;
+  }
+
+  get year() {
+    return this.#year;
+  }
+
+  set year(year) {
+    this.#year = year;
+  }
+
+  get genre() {
+    return this.#genre;
+  }
+
+  set genre(genre) {
+    this.#genre = genre;
+  }
+
+  get rating() {
+    return this.#rating;
+  }
+
+  set rating(rating) {
+    this.#rating = rating;
+  }
+
+  get type() {
+    return this.#type;
+  }
+
+  set type(type) {
+    this.#type = type;
+  }
   toString() {
     return `${this.title} è un film creato l' anno ${this.year} del genere ${this.genre} con votazione ${this.rating}`;
   }
@@ -93,10 +139,20 @@ class Movie {
 
 //Classe SERIE TV
 class TvSerie extends Movie {
+  #seasons;
   constructor(title, year, genre, rating, type, seasons) {
     super(title, year, genre, rating, type);
     this.seasons = seasons;
   }
+
+  get seasons() {
+    return this.#seasons;
+  }
+
+  set seasons(seasons) {
+    this.#seasons = seasons;
+  }
+
   toString() {
     return `${this.title} è una serie tv dell' anno (${this.year}) del genere ${this.genre} con votazione ${this.rating} e ${this.seasons} stagioni`;
   }

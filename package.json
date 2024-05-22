@@ -1,0 +1,11 @@
+{
+  "name": "node-movies",
+  "version": "1.0.0",
+  "description": "Creare un array di oggetti contenenti Movies e TV Series con le seguenti proprietà:",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node main.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

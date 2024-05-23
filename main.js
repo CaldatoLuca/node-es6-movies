@@ -82,14 +82,12 @@ class Movie {
   #year;
   #genre;
   #rating;
-  #type;
 
-  constructor(title, year, genre, rating, type, price) {
+  constructor(title, year, genre, rating) {
     this.#title = title;
     this.#year = year;
     this.#genre = genre;
     this.#rating = rating;
-    this.#type = type;
     this.price = 3.99;
   }
 
@@ -125,18 +123,8 @@ class Movie {
     this.#rating = rating;
   }
 
-  get type() {
-    return this.#type;
-  }
-
-  set type(type) {
-    this.#type = type;
-  }
-
   toString() {
-    return `${this.#title} è un film creato l' anno ${this.#year} del genere ${
-      this.#genre
-    } con votazione ${this.#rating}`;
+    return `${this.title} è un film creato l' anno ${this.year} del genere ${this.genre} con votazione ${this.rating}`;
   }
 }
 
@@ -144,8 +132,8 @@ class Movie {
 class TvSerie extends Movie {
   #seasons;
 
-  constructor(title, year, genre, rating, type, seasons) {
-    super(title, year, genre, rating, type);
+  constructor(title, year, genre, rating, seasons) {
+    super(title, year, genre, rating);
     this.#seasons = seasons;
   }
 
@@ -158,9 +146,7 @@ class TvSerie extends Movie {
   }
 
   toString() {
-    return `${this.title} è una serie tv dell' anno (${this.year}) del genere ${
-      this.genre
-    } con votazione ${this.rating} e ${this.#seasons} stagioni`;
+    return `${this.title} è una serie tv dell' anno (${this.year}) del genere ${this.genre} con votazione ${this.rating} e ${this.seasons} stagioni`;
   }
 }
 
@@ -198,25 +184,23 @@ class Cart {
 }
 
 //Creazione di array di oggetti mappando i dati
+//si poteva anche destrutturare al posto di element, evito element.
 const movies = media.map((element) => {
   if (element.type === "movie") {
     return new Movie(
       element.title,
       element.year,
       element.genre,
-      element.rating,
-      element.type
-    );
-  } else {
-    return new TvSerie(
-      element.title,
-      element.year,
-      element.genre,
-      element.rating,
-      element.type,
-      element.seasons
+      element.rating
     );
   }
+  return new TvSerie(
+    element.title,
+    element.year,
+    element.genre,
+    element.rating,
+    element.seasons
+  );
 });
 
 /**
